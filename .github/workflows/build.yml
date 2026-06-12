@@ -8,6 +8,8 @@ jobs:
   build:  
     name: Build 1.21.1 NeoForge  
     runs-on: ubuntu-latest  
+    env:  
+      GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
     steps:  
       - name: Checkout repository  
         uses: actions/checkout@v4  
