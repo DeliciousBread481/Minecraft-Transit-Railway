@@ -9,7 +9,7 @@ jobs:
     name: Build 1.21.1 NeoForge  
     runs-on: ubuntu-latest  
     env:  
-      GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}  
     steps:  
       - name: Checkout repository  
         uses: actions/checkout@v4  
@@ -27,7 +27,7 @@ jobs:
         run: chmod +x ./gradlew  
   
       - name: Setup files  
-        run: ./gradlew :common:setupFiles --no-daemon  
+        run: ./gradlew setupFiles --no-daemon  
   
       - name: Set active project to 1.21.1-neoforge  
         run: ./gradlew "Set active project to 1.21.1-neoforge" --no-daemon  
