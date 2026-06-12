@@ -114,6 +114,7 @@ tasks {
 		relocate("com.logisticscraft", "org.mtr.libraries.com.logisticscraft")
 		relocate("de.javagl", "org.mtr.libraries.de.javagl")
 		relocate("gg.essential", "org.mtr.libraries.gg.essential")
+ 		relocate("kotlin", "org.mtr.libraries.kotlin")
 	}
 
 	withType<JavaCompile>().configureEach {
