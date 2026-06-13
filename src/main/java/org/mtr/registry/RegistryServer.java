@@ -179,18 +179,23 @@ public final class RegistryServer {
 //? }
 
 //? if neoforge {
-		/*ModEventBus.PAYLOAD_HANDLERS.add(payloadRegistrar -> payloadRegistrar.playBidirectional(MTR.PACKET_IDENTIFIER_C2S, StreamCodec.composite(ByteBufCodecs.BYTE_ARRAY, CustomPacketC2S::buffer, CustomPacketC2S::new), new DirectionalPayloadHandler<>((customPacketC2S, context) -> {
-		}, (customPacketC2S, context) -> {
-			final Player player = context.player();
-			if (player instanceof ServerPlayer) {
-				PacketBufferReceiver.receive(customPacketC2S.buffer(), packetBufferReceiver -> {
-					final Function<PacketBufferReceiver, ? extends PacketHandler> getInstance = ModEventBus.PACKETS.get(packetBufferReceiver.readString());
-					if (getInstance != null) {
-						getInstance.apply(packetBufferReceiver).runServer(((ServerPlayer) player).server, (ServerPlayer) player);
-					}
-				}, ((ServerPlayer) player).server::execute);
-			}
-		})));
+		/*ModEventBus.PAYLOAD_HANDLERS.add(payloadRegistrar -> {
+			payloadRegistrar.playBidirectional(MTR.PACKET_IDENTIFIER_C2S, StreamCodec.composite(ByteBufCodecs.BYTE_ARRAY, CustomPacketC2S::buffer, CustomPacketC2S::new), new DirectionalPayloadHandler<>((customPacketC2S, context) -> {
+			}, (customPacketC2S, context) -> {
+				final Player player = context.player();
+				if (player instanceof ServerPlayer) {
+					PacketBufferReceiver.receive(customPacketC2S.buffer(), packetBufferReceiver -> {
+						final Function<PacketBufferReceiver, ? extends PacketHandler> getInstance = ModEventBus.PACKETS.get(packetBufferReceiver.readString());
+						if (getInstance != null) {
+							getInstance.apply(packetBufferReceiver).runServer(((ServerPlayer) player).server, (ServerPlayer) player);
+						}
+					}, ((ServerPlayer) player).server::execute);
+				}
+			}));
+			payloadRegistrar.playBidirectional(MTR.PACKET_IDENTIFIER_S2C, StreamCodec.composite(ByteBufCodecs.BYTE_ARRAY, CustomPacketS2C::buffer, CustomPacketS2C::new), new DirectionalPayloadHandler<>((customPacketS2C, context) -> {
+			}, (customPacketS2C, context) -> {
+			}));
+		});
 *///? }
 	}
 
